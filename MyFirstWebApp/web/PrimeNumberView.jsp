@@ -22,5 +22,7 @@
         ${pn.primeNumber}
         
         <h4>${pn.number} is ${pn.primeNumber?"":"not"} Prime Number</h4>
+        
+        <a href="index.html">Home</a>
     </body>
 </html>

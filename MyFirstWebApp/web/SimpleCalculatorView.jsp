@@ -35,5 +35,8 @@
                 <td>${calculator.result}</td>
             </tr>
         </table>
+        <br>
+        <a href="CalculatorForm.html">Back</a>
+        <a href="index.html">Home</a>
     </body>
 </html>

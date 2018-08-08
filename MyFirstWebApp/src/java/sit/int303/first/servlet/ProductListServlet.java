@@ -7,17 +7,19 @@ package sit.int303.first.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sit.int303.first.model.PrimeNumber;
+import sit.int303.mockup.model.Product;
+import sit.int303.mockup.model.ProductMockup;
 
 /**
  *
  * @author INT303
  */
-public class PrimeNumberServlet extends HttpServlet {
+public class ProductListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +32,13 @@ public class PrimeNumberServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String n = request.getParameter("number");
-        if (n!=null) { //จะได้เรียกได้
-            int number = Integer.valueOf(n);        
-        PrimeNumber pn = new PrimeNumber(number);
-        request.setAttribute("pn", pn);
-        }
-        
-        getServletContext().getRequestDispatcher("/PrimeNumberView.jsp").forward(request, response);
+        String fileLocation = getServletContext().getRealPath("/");
+        String absoluteFileName = fileLocation+"WEB-INF\\products.txt";
+        //System.out.println(absoluteFileName);
+        ProductMockup.setFileLocation(absoluteFileName);
+        List<Product> products = ProductMockup.getProducts();
+        request.setAttribute("products", products);
+        getServletContext().getRequestDispatcher("/ProductList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
