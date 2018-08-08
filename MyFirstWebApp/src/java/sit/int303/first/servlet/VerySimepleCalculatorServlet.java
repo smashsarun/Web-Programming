@@ -46,7 +46,6 @@ public class VerySimepleCalculatorServlet extends HttpServlet {
                 sc.setX(x);
                 sc.setY(y);
                 sc.setOperator(operator);
-                //���ǹ
                 request.setAttribute("calculator", sc);
                 getServletContext().getRequestDispatcher("/SimpleCalculatorView.jsp").forward(request, response);
                 

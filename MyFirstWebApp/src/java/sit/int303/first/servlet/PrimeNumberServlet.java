@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sit.int303.first.model.PrimeNumber;
 
 /**
  *
  * @author INT303
  */
-public class SimpleCalculatorServlet extends HttpServlet {
+public class PrimeNumberServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,41 +30,11 @@ public class SimpleCalculatorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            try {
-                String xStr = request.getParameter("x");
-                String yStr = request.getParameter("y");
-
-                //model
-                int x = Integer.valueOf(xStr);
-                int y = Integer.valueOf(yStr);
-                int result = x + y;
-                int result2 = x - y;
-                //view
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet SimpleCalculatorServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println(String.format("<h1>x=%d, y=%d %d+%d=%d %d-%d=%d</h1>\n",
-                        x, y, x, y, result, x, y, result2));
-                out.println("</body>");
-                out.println("</html>");
-            } catch (Exception e) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet SimpleCalculatorServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Invalid Input !!!</h1>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-
-        }
+        String n = request.getParameter("number");
+        int number = Integer.valueOf(n);        
+        PrimeNumber pn = new PrimeNumber(number);
+        request.setAttribute("pn", pn);
+        getServletContext().getRequestDispatcher("/PrimeNumberView.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

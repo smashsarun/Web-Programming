@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SARUNSUMETPANICH/Documents/GitHub/WebProgramming/MyFirstWebApp/web/CalculatorForm.html</file>
-            <file>file:/C:/Users/SARUNSUMETPANICH/Documents/GitHub/WebProgramming/MyFirstWebApp/src/java/sit/int303/first/model/SimpleCalculator.java</file>
-            <file>file:/C:/Users/SARUNSUMETPANICH/Documents/GitHub/WebProgramming/MyFirstWebApp/src/java/sit/int303/first/servlet/VerySimepleCalculatorServlet.java</file>
+            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/SimpleCalculatorView.jsp</file>
+            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/servlet/VerySimepleCalculatorServlet.java</file>
+            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/model/SimpleCalculator.java</file>
+            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/CalculatorForm.html</file>
         </group>
     </open-files>
 </project-private>
