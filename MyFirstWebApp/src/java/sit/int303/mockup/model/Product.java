@@ -66,5 +66,6 @@ public class Product {
     public void setMsrp(double msrp) {
         this.msrp = msrp;
     }
+
     
 }

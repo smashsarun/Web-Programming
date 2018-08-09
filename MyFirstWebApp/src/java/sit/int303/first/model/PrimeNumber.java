@@ -38,4 +38,5 @@ public class PrimeNumber {
         }
         return isPrime;
     }
+
 }
