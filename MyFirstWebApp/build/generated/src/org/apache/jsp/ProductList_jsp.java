@@ -60,15 +60,25 @@ public final class ProductList_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css\">\n");
       out.write("        <script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>\n");
       out.write("        <script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>\n");
       out.write("        <script src=\"https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js\"></script>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div class=\"container\">\n");
+      out.write("            <a href=\"index.html\">Home</a> <br>\n");
+      out.write("            <table class=\"table\">\n");
+      out.write("                <tr>\n");
+      out.write("                    <td><h1>Product List::</h1></td>\n");
+      out.write("                    <td>Your Cart:(");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cart.totalquantity}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(")</td>\n");
+      out.write("                </tr>\n");
+      out.write("            </table>\n");
       out.write("            <h1>Product List ::</h1><hr>\n");
-      out.write("            <table id=\"example\" class=\"table table-dark\">\n");
+      out.write("            <table id=\"example\">\n");
       out.write("                <thead>\n");
       out.write("                <th>Image</th>\n");
       out.write("                <th>No</th>\n");
@@ -77,6 +87,7 @@ public final class ProductList_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <th>Product Line</th>\n");
       out.write("                <th>Scale</th>\n");
       out.write("                <th>Price</th>\n");
+      out.write("                <th>Add To Cart</th>\n");
       out.write("                </thead>\n");
       out.write("                ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
@@ -143,6 +154,12 @@ public final class ProductList_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                        <td>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${p.msrp}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\n");
+          out.write("                        <td><a href=\"AddItemToCart?productCode=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${p.productCode}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\n");
+          out.write("                                <input type=\"button\" value=\"Add To Cart\"/>\n");
+          out.write("                            </a>\n");
+          out.write("                        </td>\n");
           out.write("                    </tr>\n");
           out.write("                ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
