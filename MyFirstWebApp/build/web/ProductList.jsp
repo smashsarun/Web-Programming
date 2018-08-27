@@ -19,17 +19,9 @@
     </head>
     <body>
         <div class="container">
-            <a href="index.html">Home</a> <br>
-            <table class="table">
-                <tr>
-                    <td><h1>Product List::</h1></td>
-                    <td>
-                        <a href="ShowCart" >Your Cart:(${cart.totalQuantity})</a>
-                    </td>
-                </tr>
-            </table>
-                <hr>
-            <table id="example">
+            <!--            include นี้คือเหมือนดึงมาจากไฟล์-->
+            <jsp:include page="include/Header.jsp?title=Product Lisiting::"/>
+            <table id="example" class="table">
                 <thead>
                 <th>Image</th>
                 <th>No</th>
@@ -54,7 +46,7 @@
                                 <input type="hidden" value="${p.productCode}" name="productCode" />
                                 <input type="submit" value="Add To Cart"/>
                             </form>   
-                                
+
                             <a href="AddItemToCart?productCode=${p.productCode}">
                                 <input type="button" value="Add To Cart"/>
                             </a>
