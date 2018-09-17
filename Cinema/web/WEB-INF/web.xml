@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>Authentication</filter-name>
+        <filter-class>filter.Authentication</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Authentication</filter-name>
+        <servlet-name>TicketManagerServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>MovieListServlet</servlet-name>
         <servlet-class>controller.MovieListServlet</servlet-class>
@@ -8,6 +18,10 @@
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>controller.loginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TicketManagerServlet</servlet-name>
+        <servlet-class>controller.TicketManagerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MovieListServlet</servlet-name>
         <url-pattern>/MovieList</url-pattern>
@@ -15,6 +29,10 @@
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TicketManagerServlet</servlet-name>
+        <url-pattern>/TicketManager</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -30,7 +30,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">ซื้อตั๋วหนัง</a>
                     </li>
-                    <a class="nav-link" href="#">จัดการตั๋ว</a>
+                    <a class="nav-link" href="TicketManager">จัดการตั๋ว</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

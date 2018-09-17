@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Login</h1>
-        <form>
+        <form action="login" method="post">
             Username: <input type="text" name="username">
             Password: <input type="password" name="password">
             <input type="submit" value="submit">

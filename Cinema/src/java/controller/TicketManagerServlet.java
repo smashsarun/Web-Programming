@@ -11,13 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author SARUNSUMETPANICH
  */
-public class loginServlet extends HttpServlet {
+public class TicketManagerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,12 +29,6 @@ public class loginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            
-            if (username == null && password == null) {
-            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-        }
             
     }
 
