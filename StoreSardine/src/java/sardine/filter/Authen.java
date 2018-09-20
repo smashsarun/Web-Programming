@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filter;
+package sardine.filter;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -22,33 +22,30 @@ import javax.servlet.http.HttpSession;
  *
  * @author SARUNSUMETPANICH
  */
-public class Authentication implements Filter {
+public class Authen implements Filter {
     
-    private FilterConfig config;
-    
-    //เข้า
+    FilterConfig config;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        this.config = filterConfig;
+       this.config=filterConfig;
     }
-    
-    //ทำอะไร
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest)request).getSession(false);
-    
-        if (session == null || session.getAttribute("loggedin") == null) {
+        
+        if (session != null || request.getAttribute("loggedin") != null) {
             config.getServletContext().getRequestDispatcher("/login").forward(request, response);
-        } else {
-            chain.doFilter(request, response); //ทำงานไล่ตาม chain
+        }
+        else {
+            chain.doFilter(request, response);
         }
     }
-    
-    //ออก
+
     @Override
     public void destroy() {
         
     }
-   
     
 }

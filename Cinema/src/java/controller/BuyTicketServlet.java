@@ -24,13 +24,14 @@ import model.MoviesList;
  *
  * @author SARUNSUMETPANICH
  */
-public class TicketManagerServlet extends HttpServlet {
+public class BuyTicketServlet extends HttpServlet {
+
     @PersistenceUnit(unitName = "CinemaPU")
     EntityManagerFactory emf;
-    
-    @Resource 
+
+    @Resource
     UserTransaction uts;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,17 +43,22 @@ public class TicketManagerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        Cookie ck[] = request.getCookies();
-        String movieid = ck[0].getValue();
-        
         MoviesListJpaController mljc = new MoviesListJpaController(uts, emf);
-        MoviesList movie =  mljc.findMoviesList(movieid);
+
+        String movieid = request.getParameter("movieid");
         
-        request.setAttribute("movie", movie);
-                
-        getServletContext().getRequestDispatcher("/TicketManager.jsp").forward(request, response);
-        
+
+        if (movieid != null) {
+            Cookie ck = new Cookie("movie", movieid);
+            ck.setMaxAge(60*60);
+            response.addCookie(ck);
+            response.sendRedirect("BuyTicket");
+        } else {
+            List<MoviesList> mv = mljc.findMoviesListEntities();
+            request.setAttribute("movies", mv);
+            getServletContext().getRequestDispatcher("/BuyTicket.jsp").forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -10,6 +10,12 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>Authentication</filter-name>
+        <servlet-name>BuyTicketServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>MovieListServlet</servlet-name>
         <servlet-class>controller.MovieListServlet</servlet-class>
@@ -22,6 +28,14 @@
         <servlet-name>TicketManagerServlet</servlet-name>
         <servlet-class>controller.TicketManagerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyTicketServlet</servlet-name>
+        <servlet-class>controller.BuyTicketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>controller.logoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MovieListServlet</servlet-name>
         <url-pattern>/MovieList</url-pattern>
@@ -33,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>TicketManagerServlet</servlet-name>
         <url-pattern>/TicketManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyTicketServlet</servlet-name>
+        <url-pattern>/BuyTicket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

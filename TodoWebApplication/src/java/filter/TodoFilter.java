@@ -22,33 +22,27 @@ import javax.servlet.http.HttpSession;
  *
  * @author SARUNSUMETPANICH
  */
-public class Authentication implements Filter {
-    
-    private FilterConfig config;
-    
-    //เข้า
+public class TodoFilter implements Filter {
+    FilterConfig config;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.config = filterConfig;
     }
-    
-    //ทำอะไร
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest)request).getSession(false);
-    
         if (session == null || session.getAttribute("loggedin") == null) {
-            config.getServletContext().getRequestDispatcher("/login").forward(request, response);
-        } else {
-            chain.doFilter(request, response); //ทำงานไล่ตาม chain
+            config.getServletContext().getRequestDispatcher("/TodoLogin").forward(request, response);
+        }else{
+            chain.doFilter(request, response);
         }
     }
-    
-    //ออก
+
     @Override
     public void destroy() {
         
     }
-   
     
 }

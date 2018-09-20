@@ -7,30 +7,28 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
-import jpa.controller.MoviesListJpaController;
-import model.MoviesList;
+import model.Users;
+import model.UsersJpaController;
 
 /**
  *
  * @author SARUNSUMETPANICH
  */
-public class TicketManagerServlet extends HttpServlet {
-    @PersistenceUnit(unitName = "CinemaPU")
+public class loginServlet extends HttpServlet {
+    @PersistenceUnit(unitName = "MusicStorePU")
     EntityManagerFactory emf;
     
-    @Resource 
+    @Resource
     UserTransaction uts;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,17 +40,20 @@ public class TicketManagerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        Cookie ck[] = request.getCookies();
-        String movieid = ck[0].getValue();
-        
-        MoviesListJpaController mljc = new MoviesListJpaController(uts, emf);
-        MoviesList movie =  mljc.findMoviesList(movieid);
-        
-        request.setAttribute("movie", movie);
-                
-        getServletContext().getRequestDispatcher("/TicketManager.jsp").forward(request, response);
-        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        UsersJpaController ujc = new UsersJpaController(uts, emf);
+        Users user = ujc.findUsers(username);
+        if (username != null && password != null) {
+            if ( (Integer.parseInt(password))==(user.getPassword()) ) {
+                request.setAttribute("loggedin", user);
+                response.sendRedirect("index.html");
+                return;
+            }
+            request.setAttribute("msg", "Invalid username or password");
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+       getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

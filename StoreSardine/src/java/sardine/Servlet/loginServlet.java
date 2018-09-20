@@ -3,34 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package sardine.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.UserTransaction;
-import jpa.controller.MoviesListJpaController;
-import model.MoviesList;
 
 /**
  *
  * @author SARUNSUMETPANICH
  */
-public class TicketManagerServlet extends HttpServlet {
-    @PersistenceUnit(unitName = "CinemaPU")
-    EntityManagerFactory emf;
-    
-    @Resource 
-    UserTransaction uts;
-    
+public class loginServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,16 +29,6 @@ public class TicketManagerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        Cookie ck[] = request.getCookies();
-        String movieid = ck[0].getValue();
-        
-        MoviesListJpaController mljc = new MoviesListJpaController(uts, emf);
-        MoviesList movie =  mljc.findMoviesList(movieid);
-        
-        request.setAttribute("movie", movie);
-                
-        getServletContext().getRequestDispatcher("/TicketManager.jsp").forward(request, response);
         
     }
 

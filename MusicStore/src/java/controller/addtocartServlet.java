@@ -7,18 +7,31 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
 import model.Album;
+import model.AlbumJpaController;
+import model.exceptions.RollbackFailureException;
 
 /**
  *
  * @author SARUNSUMETPANICH
  */
 public class addtocartServlet extends HttpServlet {
+    @PersistenceUnit(unitName = "MusicStorePU")
+    EntityManagerFactory emf;
+    
+    @Resource
+    UserTransaction utc;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +45,18 @@ public class addtocartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession(true);
-            Album a1 = (Album) session.getAttribute("addtocart");
-            System.out.println(a1);
-            if (session == null) {
-                
+            
+            String albumid = request.getParameter("albumid");
+            AlbumJpaController ajc = new AlbumJpaController(utc, emf);
+            Album a1 = ajc.findAlbum(albumid);
+        try {
+            ajc.create(a1);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(addtocartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(addtocartServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

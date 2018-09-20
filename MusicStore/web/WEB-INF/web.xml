@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>newloginFilter</filter-name>
+        <filter-class>filter.newloginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>newloginFilter</filter-name>
+        <servlet-name>bgcolorServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>albumlistServlet</servlet-name>
         <servlet-class>controller.albumlistServlet</servlet-class>
@@ -16,6 +26,10 @@
         <servlet-name>addtocartServlet</servlet-name>
         <servlet-class>controller.addtocartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>controller.loginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>albumlistServlet</servlet-name>
         <url-pattern>/albumlist</url-pattern>
@@ -31,6 +45,10 @@
     <servlet-mapping>
         <servlet-name>addtocartServlet</servlet-name>
         <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

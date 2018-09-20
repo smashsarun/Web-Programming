@@ -32,7 +32,7 @@
                 <td>${al.price}</td>
                 <td><a href="albumdetail?albumid=${al.albumid}">Detail</a></td>
             <form method="post" action="addtocart">
-                <td><input type="button" value="Add to cart"></td>
+                <td><a href="addtocart?albumid=${al.albumid}"><input type="button" value="Add to cart"></a></td>
             </form>
         </tr>
     </c:forEach>

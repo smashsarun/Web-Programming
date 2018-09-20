@@ -4,6 +4,7 @@
     Author     : SARUNSUMETPANICH
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,15 +29,21 @@
                         <a class="nav-link" href="MovieList">รายการหนัง <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ซื้อตั๋วหนัง</a>
+                        <a class="nav-link" href="BuyTicket">ซื้อตั๋วหนัง</a>
                     </li>
+                    <c:if test="${sessionScope.loggedin != null}">
                     <a class="nav-link" href="TicketManager">จัดการตั๋ว</a>
+                    </c:if>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <ul>
+                    <c:if test="${movie}!= null">
+                        ${sessionScope.loggedin.name} 
+                    </c:if>
+                </ul>
+                <ul>
+                    <a href="logout">${sessionScope.loggedin.name}</a>
+                </ul>
             </div>
         </nav>
 

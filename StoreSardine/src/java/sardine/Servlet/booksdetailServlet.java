@@ -43,7 +43,6 @@ public class booksdetailServlet extends HttpServlet {
         String bookid = request.getParameter("bookid");
         BookslistJpaController bjp = new BookslistJpaController(utx, emf);
         Bookslist bl = bjp.findBookslist(bookid);
-        
         request.setAttribute("bookdetail", bl);
         getServletContext().getRequestDispatcher("/booksdetail.jsp").forward(request, response);
     }
