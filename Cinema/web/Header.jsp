@@ -37,13 +37,11 @@
                     </li>
                 </ul>
                 <ul>
-                    <c:if test="${movie}!= null">
-                        ${sessionScope.loggedin.name} 
+                    <c:if test="${sessionScope.loggedin.name != null}">
+                        <a href="logout">${sessionScope.loggedin.name}</a>
                     </c:if>
                 </ul>
-                <ul>
-                    <a href="logout">${sessionScope.loggedin.name}</a>
-                </ul>
+
             </div>
         </nav>
 
